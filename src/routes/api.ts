@@ -18,7 +18,11 @@ router.get('/', (_req: Request, res: Response) => {
     endpoints: {
       math: {
         add: { method: 'POST', path: '/api/math/add', body: { a: 'number', b: 'number' } },
-        subtract: { method: 'POST', path: '/api/math/subtract', body: { a: 'number', b: 'number' } },
+        subtract: {
+          method: 'POST',
+          path: '/api/math/subtract',
+          body: { a: 'number', b: 'number' },
+        },
       },
       greeting: {
         greet: { method: 'POST', path: '/api/greet', body: { name: 'string' } },
