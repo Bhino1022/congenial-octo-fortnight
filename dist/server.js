@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const database_1 = require("./config/database");
 const health_1 = require("./routes/health");
 const api_1 = require("./routes/api");
 const errorHandler_1 = require("./middleware/errorHandler");
@@ -26,8 +27,9 @@ app.use((_req, res) => {
 // Error handling middleware
 app.use(errorHandler_1.errorHandler);
 // Start server
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, async () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
+    await (0, database_1.connectDB)();
 });
 exports.default = server;
 //# sourceMappingURL=server.js.map

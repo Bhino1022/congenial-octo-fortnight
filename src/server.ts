@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { connectDB } from './config/database';
 import { healthRouter } from './routes/health';
 import { apiRouter } from './routes/api';
 import { errorHandler } from './middleware/errorHandler';
@@ -28,8 +29,9 @@ app.use((_req: Request, res: Response) => {
 app.use(errorHandler);
 
 // Start server
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, async () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
+  await connectDB();
 });
 
 export default server;
