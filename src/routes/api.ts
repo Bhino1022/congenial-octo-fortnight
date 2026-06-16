@@ -18,7 +18,11 @@ router.get('/', (_req: Request, res: Response) => {
     endpoints: {
       math: {
         add: { method: 'POST', path: '/api/math/add', body: { a: 'number', b: 'number' } },
-        subtract: { method: 'POST', path: '/api/math/subtract', body: { a: 'number', b: 'number' } },
+        subtract: {
+          method: 'POST',
+          path: '/api/math/subtract',
+          body: { a: 'number', b: 'number' },
+        },
       },
       greeting: {
         greet: { method: 'POST', path: '/api/greet', body: { name: 'string' } },
@@ -39,7 +43,7 @@ router.post('/math/add', (req: ApiRequest, res: Response) => {
 
     const result = add(a, b);
     res.status(200).json({ operation: 'add', a, b, result });
-  } catch (error) {
+  } catch (_error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -56,7 +60,7 @@ router.post('/math/subtract', (req: ApiRequest, res: Response) => {
 
     const result = subtract(a, b);
     res.status(200).json({ operation: 'subtract', a, b, result });
-  } catch (error) {
+  } catch (_error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -73,7 +77,7 @@ router.post('/greet', (req: ApiRequest, res: Response) => {
 
     const greeting = greet(name);
     res.status(200).json({ message: greeting });
-  } catch (error) {
+  } catch (_error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
