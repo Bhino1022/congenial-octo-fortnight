@@ -13,7 +13,7 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    '@typescript-eslint/explicit-function-return-types': 'warn',
-    '@typescript-eslint/no-unused-vars': 'error'
+    '@typescript-eslint/explicit-function-return-types': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }]
   }
 };
